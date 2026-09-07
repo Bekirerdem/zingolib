@@ -1207,6 +1207,10 @@ pub(crate) enum NetworkSubCommand {
         about = "Disconnect every network capability of the session, keeping any stored consent"
     )]
     Off,
+    #[command(
+        about = "Switch the mixnet off for this session: sends route over clearnet through the pinned indexer"
+    )]
+    Clearnet,
     #[command(about = "Probe indexer liveness over the mixnet route")]
     Probe {
         #[arg(value_name = "indexer_uri", value_parser = parse_probe_target)]
@@ -1565,6 +1569,19 @@ async fn network_command(
                  `network on` re-consents for this session. The stored Connectivity \
                  Consent record is untouched: a standing consent, if recorded, attaches \
                  the next launch again (`--forget-online` erases it)."
+                    .to_string(),
+            )
+        }
+        NetworkSubCommand::Clearnet => {
+            // Per-session clearnet consent: the mixnet slot moves to
+            // SwitchedOff while the pinned indexer stays configured, so
+            // sends route over clearnet (testnet has no mixnet transmit
+            // correspondents; the curated directory is mainnet-only).
+            lightclient.disable_mixnet().await;
+            Ok(
+                "Mixnet Mode: switched off (send and price-fetch use clearnet through the \
+                 configured indexer). Per-session consent; the next launch returns to the \
+                 mixnet posture."
                     .to_string(),
             )
         }
