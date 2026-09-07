@@ -840,7 +840,7 @@ impl crate::wallet::LightWallet {
                 &zcash_transparent::builder::TransparentSigningSet::new(),
                 &[usk.sapling().clone()],
                 &[usk.orchard().into()],
-                rand::rngs::OsRng,
+                rand10::rand_core::UnwrapErr(rand10::rngs::SysRng),
                 &sapling_prover,
                 &sapling_prover,
                 &fee_rule,

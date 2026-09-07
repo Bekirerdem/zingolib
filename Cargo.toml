@@ -79,7 +79,7 @@ zcash_note_encryption = "0.4.2"
 # non-standard-fees: exposes `fees::fixed`, used to pin the exact planned fee
 # on Ironwood migration transactions.
 zcash_primitives = { version = "=1.0.0", package = "zakura-primitives", features = ["non-standard-fees"] }
-zcash_proofs = { version = "=1.0.0", package = "zakura-proofs" }
+zcash_proofs = { version = "=1.0.0", package = "zakura-proofs", features = ["local-prover"] }
 zcash_protocol = "0.10.4" # public API (TODO: remove from public API)
 zcash_transparent = "0.10.0"
 
@@ -141,6 +141,8 @@ clap = { version = "4.6.5", features = ["derive"] }
 dirs = "6"
 memuse = "0.2"
 rand = "0.8"
+# Zakura stack (rand_core 0.10): SysRng wrapped in UnwrapErr at the builder boundary.
+rand10 = { version = "0.10", package = "rand", features = ["sys_rng"] }
 
 ### Misc / not-yet-grouped
 rust-embed = "8"
