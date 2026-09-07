@@ -61,16 +61,16 @@ tokio-stream = "0.1"
 
 ### Zcash
 incrementalmerkletree = "0.8.2"
-orchard = "0.15.0"
-sapling-crypto = "0.7.0"
+orchard = { version = "=1.0.0", package = "zakura-orchard" }
+sapling-crypto = { version = "=1.0.0", package = "zakura-sapling-crypto" }
 shardtree = "0.7.0"
 zcash_address = "0.13.0"
-zcash_client_backend = { version = "0.24.0-rc.7", features = [
+zcash_client_backend = { version = "0.1.0-rc4", package = "zakura-client-backend", features = [
     "orchard",
     "transparent-inputs",
 ] }
 zcash_encoding = "0.4.0"
-zcash_keys = { version = "0.16.1", features = [
+zcash_keys = { version = "=1.0.0", package = "zakura-keys", features = [
     "transparent-inputs",
     "sapling",
     "orchard",
@@ -78,8 +78,8 @@ zcash_keys = { version = "0.16.1", features = [
 zcash_note_encryption = "0.4.2"
 # non-standard-fees: exposes `fees::fixed`, used to pin the exact planned fee
 # on Ironwood migration transactions.
-zcash_primitives = { version = "0.30.0", features = ["non-standard-fees"] }
-zcash_proofs = "0.30.0"
+zcash_primitives = { version = "=1.0.0", package = "zakura-primitives", features = ["non-standard-fees"] }
+zcash_proofs = { version = "=1.0.0", package = "zakura-proofs" }
 zcash_protocol = "0.10.4" # public API (TODO: remove from public API)
 zcash_transparent = "0.10.0"
 
@@ -91,7 +91,7 @@ zip32 = "0.2.0"
 ### Cryptographic
 blake2b_simd = "1"
 hmac = "0.12"
-jubjub = "0.10.0"
+jubjub = { version = "=1.0.0", package = "zakura-jubjub" }
 secp256k1 = "0.31.1"
 sha2 = "0.10"
 secrecy = "0.8"
