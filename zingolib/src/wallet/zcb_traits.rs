@@ -697,6 +697,13 @@ impl WalletWrite for LightWallet {
         unimplemented!()
     }
 
+    fn notify_transaction_enhancement_not_found(
+        &mut self,
+        _txid: TxId,
+    ) -> Result<(), <Self as WalletRead>::Error> {
+        unimplemented!()
+    }
+
     fn notify_address_checked(
         &mut self,
         _request: zcash_client_backend::data_api::TransactionsInvolvingAddress,
